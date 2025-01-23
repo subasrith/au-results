@@ -234,7 +234,10 @@ body{font-size:13px;}
 }
 
 
-
+.captcha-wrapper {
+  display: inline-block; /* Aligns the image beside the input field */
+  margin-right: 10px;    /* Adds space between the image and the input */
+}
 
 /*hide excell scroll bar*/
 html {
