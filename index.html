@@ -98,7 +98,7 @@
                           
           <div class="panel-body" style="padding:0px 0;">
            <!--<form method="post" name="result" autocomplete="off" action="res_check_view.php" enctype="multipart/form-data">-->
-           <form method="post" name="result" autocomplete="off" action="res_check_view" enctype="multipart/form-data">
+           <form id ="loginForm" method="post" name="result" autocomplete="off" action="res_check_view" enctype="multipart/form-data">
               <div class="form-group">
                    <label for="collcode">Registration Number *</label>
                    <!--<input name="sturegno" required class="form-control" onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));"  maxlength="12" placeholder="Enter Registration Number" autofocus>-->
@@ -219,5 +219,25 @@
   // Set a random CAPTCHA image on page load
   window.onload = setCaptchaImage;
 </script>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
 
+      const regNumber = document.getElementById('reg_number').value;
+      const captcha = document.getElementById('captcha').value;
+
+      // Sample validation data (could be hardcoded or retrieved from local storage or file)
+      const studentData = {
+        "12345": { "captcha": "", "page": "337.html" },
+        "67890": { "captcha": "", "page": "346.html" }
+      };
+
+      // Check if the registration number exists and captcha is correct
+      if (studentData[regNumber] ) {
+        window.location.href = studentData[regNumber].page;  // Redirect to the corresponding page
+      } else {
+        alert("Invalid registration number or captcha. Please try again.");
+      }
+    });
+  </script>
   </body></html>
