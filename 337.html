@@ -222,31 +222,27 @@ in this code there is there sgpa and cpga section right and also respecive point
         <!-- JavaScript to Calculate SGPA and CGPA -->
         <script>
           function calculateSGPA() {
-            let subjects = [
-              {grade: 'C', points: 5, credits: 3}, 
-              {grade: 'B+', points: 7, credits: 3}, 
-              {grade: 'F', points: 0, credits: 3},
-	      {grade: 'O', points: 10, credits: 3}, 
-              {grade: 'A+', points: 9, credits: 3}, 
-              {grade: 'A', points: 8, credits: 3},
-	      {grade: 'B', points: 6, credits: 3}, 
-              {grade: 'C', points: 5, credits: 3}, 
-              {grade: 'D', points: 4, credits: 3}
-	          
-              // Add all subjects similarly
-            ];
-
-            let totalPoints = 0;
             let totalCredits = 0;
-            subjects.forEach(subject => {
-              totalPoints += subject.points * subject.credits;
-              totalCredits += subject.credits;
+            let totalPoints = 0;
+            const rows = document.querySelectorAll("table tbody tr");
+
+            rows.forEach(row => {
+                const points = row.cells[4].innerText;  // Grade is in the 4th cell
+                
+                let credits = parseInt(row.cells[2].innerText);
+if (row.cells[1].innerText === "DEEP LEARNING" || row.cells[1].innerText === "INTERNSHIP-II") {
+    credits = 2;
+} else {
+    credits = 3;
+} // Credits are in the 3rd cell
+
+                totalCredits += credits;
+                totalPoints += points * credits;
             });
 
             let sgpa = totalPoints / totalCredits;
             document.getElementById('sgpa').innerText = sgpa.toFixed(2);
-            return sgpa;
-          }
+        }
 
           function calculateCGPA(sgpa, prevCgpa) {
             
