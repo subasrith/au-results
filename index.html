@@ -118,9 +118,22 @@
   <input type="text" id="captchaInput" />
   <button type="button" onclick="generateCaptcha()">Generate CAPTCHA</button>
 </div>
-<div id="captchaDisplay"></div>-->
+<div id="captchaDisplay"></div>
+               
+               <div class="form-group">
+  <label for="scode" style="padding-right: 150px;">Security Code *</label>-->
                <div class="form-group">
   <label for="scode" style="padding-right: 150px;">Security Code *</label>
+  <div class="input-group">
+    <span class="input-group-addon" style="padding: 0px 0px">
+      <!-- Placeholder for CAPTCHA image -->
+      <img src="" id="captchaimg" alt="CAPTCHA Image">
+    </span>
+    <input type="text" class="form-control" style="height:42px;" name="scodee" id="scodee" maxlength="7" placeholder="Security Code" required="">
+  </div>
+</div><br>
+
+               
   <div class="input-group">
     <span class="input-group-addon" style="padding: 0px 0px">
       <canvas id="captchaCanvas" width="150" height="50"></canvas>
@@ -171,5 +184,31 @@
       <script type="text/javascript" async="" src="/assets/plugins/bootstrap/js/dataTables.bootstrap.js"></script>
       <script type="text/javascript" async="" src="/assets/plugins/bootstrap-hover-dropdown.min.js"></script>
       <script type="text/javascript" async="" src="/assets/plugins/back-to-top.js"></script>
-      <script type="text/javascript" async="" src="/assets/js/main.js"></script>  
+      <script type="text/javascript" async="" src="/assets/js/main.js"></script> 
+
+      <script>
+  // List of CAPTCHA image filenames (make sure to upload these to your 'captchas' folder)
+  const captchaImages = [
+    'captchas/captcha1.png',
+    'captchas/captcha2.png',
+    'captchas/captcha3.png',
+    'captchas/captcha4.png',
+    'captchas/captcha5.png'
+  ];
+
+  function setCaptchaImage() {
+    // Generate a random index to select a CAPTCHA image
+    const randomIndex = Math.floor(Math.random() * captchaImages.length);
+    
+    // Get the CAPTCHA image element
+    const captchaImg = document.getElementById('captchaimg');
+    
+    // Set the random CAPTCHA image as the src of the img tag
+    captchaImg.src = captchaImages[randomIndex];
+  }
+
+  // Set a random CAPTCHA image on page load
+  window.onload = setCaptchaImage;
+</script>
+
   </body></html>
