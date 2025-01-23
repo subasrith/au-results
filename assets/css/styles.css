@@ -222,11 +222,14 @@ body{font-size:13px;}
 #status{width:30px;height:30px;position:absolute;left:50%;top:50%;margin:-15px 0 0 -15px;font-size:32px;}
 
 /* Style for CAPTCHA Image */
+/* Style for CAPTCHA Image */
 .captcha-img {
-  width: 100%;            /* Makes the image responsive */
-  height: auto;           /* Maintains the aspect ratio */
-  max-width: 200px;       /* You can adjust this value to fit your needs */
-  display: block;         /* Removes space below the image */
+  width: 100%;            /* Makes the image fill the width of the container */
+  height: 100%;           /* Makes the image fill the height of the container */
+  object-fit: contain;    /* Ensures the image fits within the container without distortion */
+  max-width: 100%;        /* Ensures the image doesn't stretch beyond the container */
+  max-height: 42px;       /* Matches the height of the input field */
+  display: block;         /* Ensures the image takes up the block level space */
   margin: 0 auto;         /* Centers the image horizontally */
 }
 
