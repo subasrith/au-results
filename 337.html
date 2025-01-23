@@ -228,7 +228,9 @@ in this code there is there sgpa and cpga section right and also respecive point
 
             rows.forEach(row => {
                 const points = row.cells[4].innerText;  // Grade is in the 4th cell
-                
+                if(row.cells[3].innerText=="F")
+		{let sgpa = 0.00;
+            document.getElementById('sgpa').innerText = sgpa.toFixed(2); break;}
                 let credits = parseInt(row.cells[2].innerText);
 if (row.cells[1].innerText === "DEEP LEARNING" || row.cells[1].innerText === "INTERNSHIP-II") {
     credits = 2;
