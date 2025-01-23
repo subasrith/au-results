@@ -98,11 +98,11 @@
                           
           <div class="panel-body" style="padding:0px 0;">
            <!--<form method="post" name="result" autocomplete="off" action="res_check_view.php" enctype="multipart/form-data">-->
-           <form id ="loginForm" method="post" name="result" autocomplete="off"  enctype="multipart/form-data">
+           <form id ="loginForm"  name="result" autocomplete="off"  enctype="multipart/form-data">
               <div class="form-group">
                    <label for="collcode">Registration Number *</label>
                    <!--<input name="sturegno" required class="form-control" onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));"  maxlength="12" placeholder="Enter Registration Number" autofocus>-->
-                   <input name="sturegno" required="" class="form-control" onkeypress="allowAlphaNumericSpace(event)" maxlength="12" placeholder="Enter Registration Number" autofocus="">
+                   <input name="sturegno" required="" class="form-control" id="collcode" onkeypress="allowAlphaNumericSpace(event)" maxlength="12" placeholder="Enter Registration Number" autofocus="">
                    <span id="lblError" style="color: red"></span>
               </div><br>
                       
@@ -144,7 +144,7 @@
       <!-- Placeholder for CAPTCHA image -->
       <img src="" id="captchaimg" alt="CAPTCHA Image"  >
     </span><br>
-    <input type="text" class="form-control" style="height:42px;" name="scodee" id="scodee" maxlength="7" placeholder="Security Code" required="">
+    <input type="text" required="" class="form-control" style="height:42px;" name="scodee" id="scodee" maxlength="7" placeholder="Security Code" required="">
   </div>
 </div><br>
 
@@ -223,7 +223,7 @@
     document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault();
 
-      const regNumber = document.getElementById('reg_number').value;
+      const regNumber = document.getElementById('collcode').value;
       const captcha = document.getElementById('captcha').value;
 
       // Sample validation data (could be hardcoded or retrieved from local storage or file)
