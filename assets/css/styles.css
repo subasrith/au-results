@@ -232,6 +232,11 @@ body{font-size:13px;}
   display: block;         /* Ensures the image takes up the block level space */
   margin: 0 auto;         /* Centers the image horizontally */
 }
+#captchaimg {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+}
 
 
 .captcha-wrapper {
