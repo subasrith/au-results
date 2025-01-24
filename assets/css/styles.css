@@ -230,24 +230,28 @@ body{font-size:13px;}
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    margin: 0;
 }
 
 .table-container {
     flex: 1;
-    min-width: 48%;  /* Adjust the width of the table container */
+    width: 48%;  /* Set both to 48% to ensure they fit side by side */
+    box-sizing: border-box;  /* Make sure padding and borders don't affect layout */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    border: 1px solid #ccc;  /* Ensure border for all tables */
 }
 
 table th, table td {
     padding: 8px;
-    border: 1px solid #ccc;
     text-align: left;
+    border: 1px solid #ccc;
 }
+
 
 
 
