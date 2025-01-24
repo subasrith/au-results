@@ -124,8 +124,7 @@ in this code there is there sgpa and cpga section right and also respecive point
 						  </tr>				  									
 						 						  <tr>
 							<td> 2 </td>
-							<td> SOFTWARE PROJECT MANAGEMENT
-							</td>	
+							<td> SOFTWARE PROJECT MANAGEMENT</td>	
 							<td>  </td>												
 							<td> B+ </td>
 							<td> 7 </td>				  	
@@ -225,19 +224,24 @@ in this code there is there sgpa and cpga section right and also respecive point
     let totalCredits = 0;
     let totalPoints = 0;
     const rows = document.querySelectorAll("table tbody tr");
+for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
 
-    for (let i = 0; i < rows.length; i++) {
-        const row = rows[i];
-        const grade = row.cells[3].innerText.trim(); // Grade is in the 4th cell
-        const points = parseInt(row.cells[4].innerText.trim()); // Parse points as an integer
+    // Ensure the row has enough cells to avoid accessing undefin
 
-        if (grade === "F") {
-            // If any grade is 'F', set SGPA to 0.00 and exit
-            const sgpa = 0.00;
-            document.getElementById("sgpa").innerText = sgpa.toFixed(2);
-            document.getElementById("sgpa").style.backgroundColor = "red"; // Change color to red
-            return; // Exit the function
-        }
+    // Safely get grade and points with a fallback for empty cells
+    const grade = row.cells[3]?.innerText.trim() || ""; // Grade is in the 4th cell
+    const pointsText = row.cells[4]?.innerText.trim(); // Points in the 5th cell
+    const points = pointsText ? parseInt(pointsText) : 0; // Fallback to 0 if empty
+
+    if (grade === "F") {
+        // If any grade is 'F', set SGPA to 0.00 and exit
+        const sgpa = 0.00;
+        document.getElementById("sgpa").innerText = sgpa.toFixed(2);
+        document.getElementById("sgpa").style.backgroundColor = "red"; // Change color to red
+        return; // Exit the function
+    }
+}
 
         let credits = parseInt(row.cells[2].innerText.trim()); // Credits are in the 3rd cell
         if (row.cells[1].innerText.trim() === "DEEP LEARNING" || row.cells[1].innerText.trim() === "INTERNSHIP-II") {
