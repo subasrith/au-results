@@ -228,7 +228,10 @@ for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
 
     // Ensure the row has enough cells to avoid accessing undefin
-
+  if (row.cells.length < 5) {
+        console.warn(`Row ${i + 1} has fewer cells than expected. Skipping this row.`);
+        continue;
+    }
     // Safely get grade and points with a fallback for empty cells
     const grade = row.cells[3]?.innerText.trim() || ""; // Grade is in the 4th cell
     const pointsText = row.cells[4]?.innerText.trim(); // Points in the 5th cell
