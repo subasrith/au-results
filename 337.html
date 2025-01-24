@@ -172,7 +172,18 @@
 							<td> 7 </td>				  	
 						  </tr>				  	
 			</tbody></table>
-			
+
+
+<div id="remarks-container" style="display: none; text-align: center; color: green; font-weight: bold;">
+    REMARKS: PASSED IN SIXTH SEMESTER
+</div>
+
+
+
+
+
+
+				
 			<div id="main">
     <div id="page-wrap" class="table-container">
         <table border="1" style="width: 100%; margin-top: 20px; border-collapse: collapse;">
@@ -310,4 +321,15 @@ function calculateCGPA(sgpa, prevCgpa) {
             // Example total credits for this semester
           calculateCGPA(currentSGPA, previousCGPA, totalCredits);
         </script>
+
+
+			<script>
+    // Assuming cgpa is fetched dynamically from a source or variable
+    let cgpa = parseFloat(document.getElementById('cgpa').textContent);
+
+    if (cgpa !== 0.00) {
+        document.getElementById('remarks-container').style.display = 'block';
+    }
+</script>
+
 		</body> 
