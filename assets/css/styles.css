@@ -226,6 +226,35 @@ body{font-size:13px;}
 
 
 
+#main {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.table-container {
+    flex: 1;
+    min-width: 48%;  /* Adjust the width of the table container */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+
+
+
+
+
+
 
 
 /*hide excell scroll bar*/
