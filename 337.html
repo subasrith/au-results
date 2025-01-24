@@ -221,38 +221,54 @@ in this code there is there sgpa and cpga section right and also respecive point
 
         <!-- JavaScript to Calculate SGPA and CGPA -->
         <script>
-          function calculateSGPA() {
-            let totalCredits = 0;
-            let totalPoints = 0;
-            const rows = document.querySelectorAll("table tbody tr");
+    function calculateSGPA() {
+    let totalCredits = 0;
+    let totalPoints = 0;
+    const rows = document.querySelectorAll("table tbody tr");
 
-            rows.forEach(row => {
-                const points = row.cells[4].innerText;  // Grade is in the 4th cell
-                if(row.cells[3].innerText=="F")
-		{let sgpa = 0.00;
-            document.getElementById('sgpa').innerText = sgpa.toFixed(2); break;}
-                let credits = parseInt(row.cells[2].innerText);
-if (row.cells[1].innerText === "DEEP LEARNING" || row.cells[1].innerText === "INTERNSHIP-II") {
-    credits = 2;
-} else {
-    credits = 3;
-} // Credits are in the 3rd cell
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const grade = row.cells[3].innerText.trim(); // Grade is in the 4th cell
+        const points = parseInt(row.cells[4].innerText.trim()); // Parse points as an integer
 
-                totalCredits += credits;
-                totalPoints += points * credits;
-            });
-
-            let sgpa = totalPoints / totalCredits;
-            document.getElementById('sgpa').innerText = sgpa.toFixed(2);
+        if (grade === "F") {
+            // If any grade is 'F', set SGPA to 0.00 and exit
+            const sgpa = 0.00;
+            document.getElementById("sgpa").innerText = sgpa.toFixed(2);
+            document.getElementById("sgpa").style.backgroundColor = "red"; // Change color to red
+            return; // Exit the function
         }
 
-          function calculateCGPA(sgpa, prevCgpa) {
-            
-            let cgpa = ((prevCgpa*6)+sgpa)/7
+        let credits = parseInt(row.cells[2].innerText.trim()); // Credits are in the 3rd cell
+        if (row.cells[1].innerText.trim() === "DEEP LEARNING" || row.cells[1].innerText.trim() === "INTERNSHIP-II") {
+            credits = 2;
+        } else {
+            credits = 3;
+        }
 
-		   
-            document.getElementById('cgpa').innerText = cgpa.toFixed(2);
-          }
+        totalCredits += credits;
+        totalPoints += points * credits;
+    }
+
+    const sgpa = totalPoints / totalCredits; // Calculate SGPA
+    document.getElementById("sgpa").innerText = sgpa.toFixed(2);
+    document.getElementById("sgpa").style.backgroundColor = "green"; // Set the background to green for normal case
+}
+
+function calculateCGPA(sgpa, prevCgpa) {
+    let cgpa;
+    
+    if (sgpa === 0.00) {
+        cgpa = ""; // Set CGPA to blank if SGPA is 0.00
+        document.getElementById('cgpa').style.backgroundColor = "orange"; // Set CGPA container to orange
+    } else {
+        cgpa = ((prevCgpa * 6) + sgpa) / 7; // Calculate CGPA normally
+        document.getElementById('cgpa').style.backgroundColor = "green"; // Set CGPA container to green for normal case
+    }
+
+    document.getElementById('cgpa').innerText = cgpa ? cgpa.toFixed(2) : ""; // Display CGPA or leave it blank
+}
+
 
           // Example usage:
           let currentSGPA = calculateSGPA();
