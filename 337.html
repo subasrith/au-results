@@ -241,7 +241,7 @@ in this code there is there sgpa and cpga section right and also respecive point
 
         let credits = parseInt(row.cells[2].innerText.trim()); // Credits are in the 3rd cell
         if (row.cells[1].innerText.trim() === "DEEP LEARNING" || row.cells[1].innerText.trim() === "INTERNSHIP-II") {
-            credits = 2;
+            credits = 2; // Adjust credits for these subjects
         } else {
             credits = 3;
         }
@@ -268,7 +268,6 @@ function calculateCGPA(sgpa, prevCgpa) {
 
     document.getElementById('cgpa').innerText = cgpa ? cgpa.toFixed(2) : ""; // Display CGPA or leave it blank
 }
-
 
           // Example usage:
           let currentSGPA = calculateSGPA();
