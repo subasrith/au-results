@@ -220,47 +220,54 @@ in this code there is there sgpa and cpga section right and also respecive point
 
         <!-- JavaScript to Calculate SGPA and CGPA -->
         <script>
-    function calculateSGPA() {
+function calculateSGPA() {
     let totalCredits = 0;
     let totalPoints = 0;
     const rows = document.querySelectorAll("table tbody tr");
-for (let i = 0; i < rows.length; i++) {
-    const row = rows[i];
 
-    // Ensure the row has enough cells to avoid accessing undefin
-  if (row.cells.length < 5) {
-        console.warn(`Row ${i + 1} has fewer cells than expected. Skipping this row.`);
-        continue;
-    }
-    // Safely get grade and points with a fallback for empty cells
-    const grade = row.cells[3]?.innerText.trim() || ""; // Grade is in the 4th cell
-    const pointsText = row.cells[4]?.innerText.trim(); // Points in the 5th cell
-    const points = pointsText ? parseInt(pointsText) : 0; // Fallback to 0 if empty
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
 
-    if (grade === "F") {
-        // If any grade is 'F', set SGPA to 0.00 and exit
-        const sgpa = 0.00;
-        document.getElementById("sgpa").innerText = sgpa.toFixed(2);
-        document.getElementById("sgpa").style.backgroundColor = "red"; // Change color to red
-        return; // Exit the function
-    }
-}
+        // Check if row has enough cells (at least 5 cells)
+        if (row.cells.length < 5) {
+            console.warn(`Row ${i + 1} has fewer cells than expected. Skipping this row.`);
+            continue;
+        }
 
-        let credits = parseInt(row.cells[2].innerText.trim()); // Credits are in the 3rd cell
+        // Safely get the points (5th cell), or set to a default if empty
+        const pointsText = row.cells[4]?.innerText.trim();
+        const points = pointsText ? parseInt(pointsText) : 0; // Default to 0 if points is empty
+
+        // Check for grade (4th cell)
+        const grade = row.cells[3]?.innerText.trim(); // Grade is in the 4th cell
+
+        if (grade === "F" || points === 0) {
+            // If any grade is 'F' or points are 0, set SGPA to 0.00 and exit
+            const sgpa = 0.00;
+            document.getElementById("sgpa").innerText = sgpa.toFixed(2);
+            document.getElementById("sgpa").style.backgroundColor = "red"; // Change color to red
+            return; // Exit the function early
+        }
+
+        // Handle credits (3rd cell) and set based on the course name (2nd cell)
+        let credits = parseInt(row.cells[2].innerText.trim());
         if (row.cells[1].innerText.trim() === "DEEP LEARNING" || row.cells[1].innerText.trim() === "INTERNSHIP-II") {
-            credits = 2; // Adjust credits for these subjects
+            credits = 2;
         } else {
             credits = 3;
         }
 
+        // Accumulate total credits and points
         totalCredits += credits;
         totalPoints += points * credits;
-    
+    }
 
-    const sgpa = totalPoints / totalCredits; // Calculate SGPA
+    // After the loop, calculate SGPA
+    const sgpa = totalPoints / totalCredits;
     document.getElementById("sgpa").innerText = sgpa.toFixed(2);
     document.getElementById("sgpa").style.backgroundColor = "green"; // Set the background to green for normal case
 }
+
 
 function calculateCGPA(sgpa, prevCgpa) {
     let cgpa;
