@@ -277,7 +277,7 @@ function calculateSGPA() {
             const sgpa = 0.00;
             document.getElementById("sgpa").innerText = sgpa.toFixed(2);
             document.getElementById("sgpa").style.backgroundColor = "red"; // Change color to red
-            return; // Exit the function early
+            return sgpa; // Exit the function early
         }
 
         // Handle credits (3rd cell) and set based on the course name (2nd cell)
@@ -297,7 +297,7 @@ function calculateSGPA() {
     const sgpa = totalPoints / totalCredits;
     document.getElementById("sgpa").innerText = sgpa.toFixed(2);
     document.getElementById("sgpa").style.backgroundColor = "green"; // Set the background to green for normal case
-	return spga;
+	
 }
 
 
