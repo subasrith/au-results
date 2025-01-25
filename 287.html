@@ -297,6 +297,7 @@ function calculateSGPA() {
     const sgpa = totalPoints / totalCredits;
     document.getElementById("sgpa").innerText = sgpa.toFixed(2);
     document.getElementById("sgpa").style.backgroundColor = "green"; // Set the background to green for normal case
+	return spga;
 }
 
 
@@ -307,7 +308,7 @@ function calculateCGPA(sgpaa, prevCgpa) {
         cgpa = ""; // Set CGPA to blank if SGPA is 0.00
         document.getElementById('cgpa').style.backgroundColor = "orange"; // Set CGPA container to orange
     } else {
-        cgpa = 7.89// Calculate CGPA normally
+        cgpa = // Calculate CGPA normally
         document.getElementById('cgpa').style.backgroundColor = "green"; // Set CGPA container to green for normal case
     }
 
