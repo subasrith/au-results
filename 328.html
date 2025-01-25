@@ -301,10 +301,10 @@ function calculateSGPA() {
 }
 
 
-function calculateCGPA(sgpa, prevCgpa) {
+function calculateCGPA(sgpaa, prevCgpa) {
     let cgpa;
     
-    if (sgpa === 0.00) {
+    if (sgpaa === 0.00) {
         cgpa = ""; // Set CGPA to blank if SGPA is 0.00
         document.getElementById('cgpa').style.backgroundColor = "orange"; // Set CGPA container to orange
     } else {
@@ -316,10 +316,10 @@ function calculateCGPA(sgpa, prevCgpa) {
 }
 
           // Example usage:
-          let sgpa = calculateSGPA();
+          let sgpaa = calculateSGPA();
           let prevCgpa = 8.17;  // Example previous CGPA
             // Example total credits for this semester
-          calculateCGPA(sgpa, prevCgpa);
+          calculateCGPA(sgpaa, prevCgpa);
         </script>
 
 
