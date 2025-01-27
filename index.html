@@ -195,7 +195,8 @@
       <script type="text/javascript" async="" src="/assets/plugins/back-to-top.js"></script>
       <script type="text/javascript" async="" src="/assets/js/main.js"></script> 
 
-      <script>
+      
+<script>
   // List of CAPTCHA image filenames (make sure to upload these to your 'captchas' folder)
   const captchaImages = [
     'captchas/captcha1.png',
@@ -214,11 +215,16 @@
     
     // Set the random CAPTCHA image as the src of the img tag
     captchaImg.src = captchaImages[randomIndex];
+
+    // Reduce the size to 50%
+    captchaImg.style.width = "50%";
+    captchaImg.style.height = "auto"; // Maintain aspect ratio
   }
 
   // Set a random CAPTCHA image on page load
   window.onload = setCaptchaImage;
 </script>
+
 <script>
     document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault();
