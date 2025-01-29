@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .result-container {
+      border: 1px solid #ddd;
+      padding: 20px;
+      width: 50%;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .result-container h2 {
+      color: #333;
+    }
+    .not-found {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Student Results</h1>
+  <div class="result-container" id="resultContainer">
+    <!-- Result will be displayed here dynamically -->
+  </div>
+
+  <script>
+    // Simulated result data (this can be replaced by data from a server or database)
+    const results = {
+      "101": {
+        name: "John Doe",
+        marks: 85,
+        status: "Passed",
+      },
+      "102": {
+        name: "Jane Smith",
+        marks: 78,
+        status: "Passed",
+      },
+      "103": {
+        name: "Mike Johnson",
+        marks: 45,
+        status: "Failed",
+      },
+    };
+
+    // Get roll number from URL parameters (e.g., ?roll=101)
+    const urlParams = new URLSearchParams(window.location.search);
+    const rollNumber = urlParams.get("roll");
+
+    // Get the result container
+    const resultContainer = document.getElementById("resultContainer");
+
+    // Display the result dynamically
+    if (results[rollNumber]) {
+      const student = results[rollNumber];
+      resultContainer.innerHTML = `
+        <h2>Result for Roll Number: ${rollNumber}</h2>
+        <p><strong>Name:</strong> ${student.name}</p>
+        <p><strong>Marks:</strong> ${student.marks}</p>
+        <p><strong>Status:</strong> ${student.status}</p>
+      `;
+    } else {
+      resultContainer.innerHTML = `
+        <h2 class="not-found">Result Not Found!</h2>
+        <p>Please check the roll number and try again.</p>
+      `;
+    }
+  </script>
+</body>
+</html>
+
