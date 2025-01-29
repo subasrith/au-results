@@ -332,10 +332,13 @@ function calculateCGPA(sgpa, prevCgpa) {
     }
 </script>
 <script>
-  history.pushState(null, null, location.href);
-  window.onpopstate = function () {
-    history.go(1);
-  };
+  (function () {
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function () {
+      history.pushState(null, null, location.href);
+    });
+  })();
 </script>
+
 
 		</body> 
